@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <script>
+        function goToNewPage() {
+          window.location.href = "sub1.html";
+        }
+    </script>
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+
+        body {
+            background-color: #101010;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+
+        header.sticky {
+            background-color: rgba(0, 0, 0, 1);
+            box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
+        }
+
+        header .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00bcd4;
+            text-transform: uppercase;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        header .logo:hover {
+            transform: rotateY(360deg);
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        header nav ul li {
+            margin: 0 20px;
+            position: relative;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #00bcd4;
+            transform: scale(1.1);
+        }
+
+        /* Dropdown Menu */
+        header nav ul li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        header nav ul li .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 8px;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        header nav ul li .dropdown a {
+            display: block;
+            padding: 10px 20px;
+            color: #fff;
+            white-space: nowrap;
+            transition: background 0.3s ease;
+        }
+
+        header nav ul li .dropdown a:hover {
+            background-color: #00bcd4;
+        }
+
+        /* Mobile menu icon */
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 25px;
+            width: 35px;
+        }
+
+        .menu-icon span {
+            background-color: #fff;
+            height: 4px;
+            width: 100%;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .menu-icon.open span:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+
+        .menu-icon.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.open span:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
+        nav ul.active {
+            display: block;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.9);
+            top: 60px;
+            right: 0;
+            width: 100%;
+            text-align: center;
+            transform: translateY(-30px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        nav ul.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            header nav ul {
+                display: none;
+            }
+
+            .menu-icon {
+                display: flex;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('cyber-bg.jpg') no-repeat center center/cover;
+            background-attachment: fixed;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-position 0.5s ease-out;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .overlay {
+            position: relative;
+            z-index: 2;
+            padding: 50px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .overlay h1 {
+            font-size: 52px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 0 5px 15px rgba(0, 188, 212, 0.5);
+            color: #00bcd4;
+            background: linear-gradient(135deg, #00bcd4, #00796b);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .overlay p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            padding: 15px 30px;
+            font-size: 16px;
+            color: #fff;
+            background: linear-gradient(135deg, #00bcd4, #00796b);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 188, 212, 0.5);
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 50px 0;
+            background: #101010;
+            text-align: center;
+        }
+
+        .feature-card {
+            perspective: 1000px;
+            position: relative;
+            padding: 30px;
+            background: linear-gradient(135deg, #1e1e1e, #292929);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            transform-origin: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+
+        .feature-card img {
+            width: 60px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card:hover {
+            transform: rotateY(360deg);
+            box-shadow: 0 10px 30px rgba(0, 188, 212, 0.3);
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #00bcd4;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #151515;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Cyber Hub</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a>
+                    <div class="dropdown">
+                        <a href="#">Penetration Testing</a>
+                        <a href="#">Vulnerability Assessment</a>
+                    </div>
+                </li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="overlay">
+            <h1>Protect Your Digital World</h1>
+            <p>Stay ahead of cyber threats with our top-notch cybersecurity services.</p>
+            <button class="cta-button" onclick="goToNewPage()">Get Started</button>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature-card">
+            <img src="security-icon.png" alt="Icon">
+            <h3>Penetration Testing</h3>
+            <p>Identify vulnerabilities and secure your systems with our expert testing.</p>
+        </div>
+        <div class="feature-card">
+            <img src="security-icon.png" alt="Icon">
+            <h3>Incident Response</h3>
+            <p>Quickly recover and protect your network from active threats.</p>
+        </div>
+        <div class="feature-card">
+            <img src="security-icon.png" alt="Icon">
+            <h3>Risk Management</h3>
+            <p>Minimize cyber risks with our tailored cybersecurity strategies.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Cyber Security Hub &copy; 2024 | All Rights Reserved</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

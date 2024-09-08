@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a0f24; /* Same as previous page */
+            color: #ffffff; /* Same as previous page */
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1c1f2b; /* Same as previous page */
+            border-radius: 10px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background-color: #00bcd4; /* Same as previous page */
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00796b; /* Same as previous page */
+        }
+        .hidden {
+            display: none;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Select a Platform</h2>
+        <label for="platformSelect">Choose Platform:</label>
+        <select id="platformSelect">
+            <option value="">-- Select --</option>
+            <option value="Whatsapp">WhatsApp</option>
+            <option value="x">X</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Facebook">Facebook</option>
+        </select>
+
+        <div id="whatsappSection" class="hidden">
+            <h3>WhatsApp Screenshot</h3>
+            <img src="placeholder.jpg" alt="WhatsApp Screenshot" width="300px">
+        </div>
+
+        <div id="xSection" class="hidden">
+            <h3>X Login</h3>
+            <div class="form-container">
+                <label for="Username">Username:</label>
+                <input type="text" id="xUsername" placeholder="Enter Username">
+
+                <label for="Password">Password:</label>
+                <input type="password" id="xPassword" placeholder="Enter Password">
+            </div>
+        </div>
+
+        <!-- <div id ="IGsection" class="hidden">
+            <h4>Instagram Login</h4>
+            <div class=""form-container>
+                <label for="Username">Username:</label>
+                <input type="text" id="xUsername" placeholder="Enter Username">
+
+                <label for="Password">Password:</label>
+                <input type="password" id="xPassword" placeholder="Enter Password">
+            </div>
+        </div>
+
+        <div id ="FBsection" class="hidden">
+            <h5>Facebook Login</h5>
+            <div class=""form-container>
+                <label for="Username">Username:</label>
+                <input type="text" id="xUsername" placeholder="Enter Username">
+
+                <label for="Password">Password:</label>
+                <input type="password" id="xPassword" placeholder="Enter Password">
+            </div>
+        </div> -->
+    </div>
+
+    <script>
+        const platformSelect = document.getElementById('platformSelect');
+        const whatsappSection = document.getElementById('whatsappSection');
+        const xSection = document.getElementById('xSection');
+
+        platformSelect.addEventListener('change', function() {
+            const selectedPlatform = platformSelect.value;
+
+            if (selectedPlatform === 'Whatsapp') {
+                whatsappSection.classList.remove('hidden');
+                xSection.classList.add('hidden');
+            } else if (selectedPlatform === 'x') {
+                xSection.classList.remove('hidden');
+                whatsappSection.classList.add('hidden');
+            } else {
+                whatsappSection.classList.add('hidden');
+                xSection.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

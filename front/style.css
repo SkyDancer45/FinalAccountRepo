@@ -1,0 +1,311 @@
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+}
+
+body {
+    background-color: #0e0f1f;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+header.sticky {
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
+}
+
+header .logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #00e5ff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: transform 0.3s ease-in-out;
+}
+
+header .logo:hover {
+    transform: rotateY(360deg);
+    color: #00bcd4;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+}
+
+header nav ul li {
+    margin: 0 25px;
+    position: relative;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #00e5ff;
+    transform: scale(1.1);
+}
+
+/* Dropdown Menu */
+header nav ul li:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+header nav ul li .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 8px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 500;
+}
+
+header nav ul li .dropdown a {
+    display: block;
+    padding: 10px 20px;
+    color: #ffffff;
+    white-space: nowrap;
+    transition: background 0.3s ease;
+}
+
+header nav ul li .dropdown a:hover {
+    background-color: #00e5ff;
+    color: #000;
+}
+
+/* Mobile Menu Icon */
+.menu-icon {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 25px;
+    width: 35px;
+    z-index: 1001;
+}
+
+.menu-icon span {
+    background-color: #ffffff;
+    height: 4px;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-icon.open span:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+
+.menu-icon.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-icon.open span:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+nav ul.active {
+    display: block;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    top: 60px;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    transform: translateY(-30px);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+nav ul.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    header nav ul {
+        display: none;
+    }
+
+    .menu-icon {
+        display: flex;
+    }
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #0e0f1f, #111224), url('cyber-bg.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-position 0.5s ease-out;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.overlay {
+    position: relative;
+    z-index: 2;
+    padding: 60px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.overlay h1 {
+    font-size: 56px;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    color: #00e5ff;
+    background: linear-gradient(135deg, #00e5ff, #00796b);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.overlay p {
+    font-size: 20px;
+    line-height: 1.8;
+    margin-bottom: 35px;
+    color: rgba(255, 255, 255, 0.9);
+    animation: fadeInUp 1.5s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cta-button {
+    padding: 18px 35px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg, #00e5ff, #00796b);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(0, 188, 212, 0.7);
+}
+
+/* Features Section */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 60px 0;
+    background: #0e0f1f;
+    text-align: center;
+}
+
+.feature-card {
+    perspective: 1200px;
+    position: relative;
+    padding: 35px;
+    background: linear-gradient(135deg, #141522, #1c1d2d);
+    border-radius: 12px;
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    transform-origin: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+
+.feature-card img {
+    width: 65px;
+    margin-bottom: 25px;
+}
+
+.feature-card:hover {
+    transform: rotateY(360deg);
+    box-shadow: 0 10px 35px rgba(0, 188, 212, 0.4);
+}
+
+.feature-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #00e5ff;
+}
+
+.feature-card p {
+    font-size: 16px;
+    color: #cccccc;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 25px 0;
+    background: #151515;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+footer p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    letter-spacing: 1px;
+}
