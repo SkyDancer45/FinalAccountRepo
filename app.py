@@ -1,15 +1,29 @@
-from flask import Flask, request
 from whatsapp import getImage
+from flask import Flask, request, url_for, render_template
+app = Flask(__name__, template_folder='./front/')
 
-app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('main.html')
 
 
-@app.route('/process_data', methods=['POST'])
-def process_input():
-    if request.method == 'POST':
-        keywords = request.json.get('keywords')
-        if keywords:
-            getImage(keywords)
-        else:
-            return "Keywords parameter is missing in the POST request.", 400
-    return "Invalid request method.", 405
+@app.route("/about")
+def about():
+    return "<h1>About Page</h1>"
+
+
+@app.route("/sub1.html")
+def sub1():
+    return render_template("sub1.html")
+
+
+@app.route("/whatsapp")
+def sub2():
+    getImage()
+    return "<h1>Please CLose the whatsapp tab and open the /collage link</h1>"
+
+
+@app.route("/collage")
+def sub3():
+    return render_template("collage.html")

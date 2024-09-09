@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Gallery</title>
+</head>
+<body>
+    <h1>Image Gallery</h1>
+    <div id="image-gallery">
+        </div>
+
+    <script>
+        // Replace 'images' with the actual path to your image folder
+        const imageFolder = '../collage/';
+
+        // Function to load images dynamically
+        function loadImages() {
+            const imageGallery = document.getElementById('image-gallery');
+            imageGallery.innerHTML = ''; // Clear existing images
+
+            // Create an XMLHttpRequest object to fetch the image list
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', imageFolder, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const imageList = JSON.parse(xhr.responseText);
+
+                    // Iterate over the image list and create image elements
+                    imageList.forEach(image => {
+                        const img = document.createElement('img');
+                        img.src = imageFolder + '/' + image;
+                        img.alt = image;
+                        imageGallery.appendChild(img);
+                    });
+                } else {
+                    console.error('Error loading image list:', xhr.status);
+                }
+            };
+            xhr.send();
+        }
+
+        // Load images on page load
+        loadImages();
+    </script>
+</body>
+</html>
+
